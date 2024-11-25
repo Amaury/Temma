@@ -65,11 +65,11 @@ class User extends \Trantor\Web\Controller {
 		// check if the User table exists
 		if (!$this->_userDao->tableExists()) {
 			$tableName = $this->_userDao->getTableName();
-			print(TµAnsi::style("<info>The table '$tableName' doesn't exist.</info>"));
-			print(TµAnsi::style("Do you want to create it? [Y/n]\n"));
-			$res = TµTerm::input();
+			print(TrAnsi::style("<info>The table '$tableName' doesn't exist.</info>"));
+			print(TrAnsi::style("Do you want to create it? [Y/n]\n"));
+			$res = TrTerm::input();
 			if ($res && $res != 'y' && $res != 'Y') {
-				print(TµAnsi::style("<alert marginTop='1'>This script needs the table '$tableName'. Abort.</alert>"));
+				print(TrAnsi::style("<alert marginTop='1'>This script needs the table '$tableName'. Abort.</alert>"));
 				exit(1);
 			}
 			$idField = $this->_userDao->getFieldName('id');
@@ -88,8 +88,8 @@ class User extends \Trantor\Web\Controller {
 				) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
 			$this->_userDao->getDatabase()->exec($sql);
 			print("\n");
-			print(TµAnsi::style("<success>The table '$tableName' has been created.</success>"));
-			print(TµAnsi::style("<info>You should customize the 'roles' and 'services' fields.</info>"));
+			print(TrAnsi::style("<success>The table '$tableName' has been created.</success>"));
+			print(TrAnsi::style("<info>You should customize the 'roles' and 'services' fields.</info>"));
 		}
 	}
 	/**
@@ -133,24 +133,24 @@ class User extends \Trantor\Web\Controller {
 			$sort = [$sort => 'desc'];
 		$users = $this->_userDao->search($criteria, $sort);
 		foreach ($users as $user) {
-			print(TµAnsi::faint("─────────────────────────────\n"));
-			print('id:          ' . TµAnsi::color('yellow', $user['id']) . "\n");
-			print('name:        ' . TµAnsi::color('white', $user['name']) . "\n");
-			print('creation:    ' . TµAnsi::faint($user['date_creation']) . "\n");
-			print('last login:  ' . TµAnsi::faint($user['date_last_login']) . "\n");
-			print('last access: ' . TµAnsi::faint($user['date_last_login']) . "\n");
-			print('email:       ' . TµAnsi::color('green', $user['email']) . "\n");
+			print(TrAnsi::faint("─────────────────────────────\n"));
+			print('id:          ' . TrAnsi::color('yellow', $user['id']) . "\n");
+			print('name:        ' . TrAnsi::color('white', $user['name']) . "\n");
+			print('creation:    ' . TrAnsi::faint($user['date_creation']) . "\n");
+			print('last login:  ' . TrAnsi::faint($user['date_last_login']) . "\n");
+			print('last access: ' . TrAnsi::faint($user['date_last_login']) . "\n");
+			print('email:       ' . TrAnsi::color('green', $user['email']) . "\n");
 			if ($user['roles']) {
 				$roles = str_getcsv($user['roles']);
 				print("roles:\n");
 				foreach ($roles as $role)
-					print('           - ' . TµAnsi::color('blue', $role) . "\n");
+					print('           - ' . TrAnsi::color('blue', $role) . "\n");
 			}
 			if ($user['services']) {
 				$services = str_getcsv($user['services']);
 				print("services:\n");
 				foreach ($services as $service)
-					print('           - ' . TµAnsi::color('red', $service) . "\n");
+					print('           - ' . TrAnsi::color('red', $service) . "\n");
 			}
 			print("\n");
 		}
@@ -175,7 +175,7 @@ class User extends \Trantor\Web\Controller {
 			$data['services'] = $services;
 		$id = $this->_userDao->create($data);
 		print("Identifier: $id\n");
-		print(TµAnsi::color('green', "Done\n"));
+		print(TrAnsi::color('green', "Done\n"));
 	}
 	/**
 	 * Remove a user.
@@ -185,14 +185,14 @@ class User extends \Trantor\Web\Controller {
 	 */
 	public function remove(?int $id=null, ?string $email=null) {
 		if (!$id && !$email) {
-			print(TµAnsi::color('red', "Need 'id' or 'email' parameter.\n"));
+			print(TrAnsi::color('red', "Need 'id' or 'email' parameter.\n"));
 			exit(1);
 		}
 		if ($id)
 			$this->_userDao->remove($id);
 		else
 			$this->_userDao->remove($this->_userDao->criteria()->equal('email', $email));
-		print(TµAnsi::color('green', "Done\n"));
+		print(TrAnsi::color('green', "Done\n"));
 	}
 }
 

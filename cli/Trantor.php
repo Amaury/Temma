@@ -19,9 +19,9 @@ class Trantor extends \Trantor\Web\Controller {
 	 * Shows Trantor information.
 	 */
 	public function info() {
-		print(TµAnsi::bold("Trantor version:  ") . \Trantor\Web\Framework::TRANTOR_VERSION . "\n");
+		print(TrAnsi::bold("Trantor version:  ") . \Trantor\Web\Framework::TRANTOR_VERSION . "\n");
 		if (class_exists('\Smarty\Smarty'))
-			print(TµAnsi::bold("Smarty version: ") . \Smarty\Smarty::SMARTY_VERSION . "\n");
+			print(TrAnsi::bold("Smarty version: ") . \Smarty\Smarty::SMARTY_VERSION . "\n");
 	}
 	/**
 	 * Update the current Trantor installation.
@@ -117,12 +117,12 @@ class Trantor extends \Trantor\Web\Controller {
 			// lib/Trantor
 			$this->_copyFilesFromDir('lib/Trantor', "$tmpPath/$prefix/lib/Trantor", $this->_config->appPath . "/lib/Trantor", null, $force, sync: true);
 		} catch (\Exception $e) {
-			print(TµAnsi::color('red', "Error\n"));
+			print(TrAnsi::color('red', "Error\n"));
 			print($e->getMessage() . "\n");
 			$returnStatus = 1;
 		}
 		if ($tmpPath)
-			TµFile::recursiveRemove($tmpPath);
+			TrFile::recursiveRemove($tmpPath);
 		if ($tgzPath)
 			unlink($tgzPath);
 		return ($returnStatus);
@@ -144,18 +144,18 @@ class Trantor extends \Trantor\Web\Controller {
 		if (!is_dir($toDirPath)) {
 			if (file_exists($toDirPath)) {
 				if (!$force) {
-					print("A file named '" . TµAnsi::bold($dirName) . "' exists, preventing directory creation.\n");
-					print("Continue without updating the '" . TµAnsi::bold($dirName) . "' directory? [y/N] ");
-					$answer = TµTerm::input();
+					print("A file named '" . TrAnsi::bold($dirName) . "' exists, preventing directory creation.\n");
+					print("Continue without updating the '" . TrAnsi::bold($dirName) . "' directory? [y/N] ");
+					$answer = TrTerm::input();
 					print("\n");
 					if (strcasecmp($answer, 'y') && strcasecmp($answer, 'yes'))
 						throw new \Exception("A file named '$dirName' exists.");
 				}
 				return;
 			} else if (!$force) {
-				print("There is no '" . TµAnsi::bold($dirName) . "' directory in the project.\n");
+				print("There is no '" . TrAnsi::bold($dirName) . "' directory in the project.\n");
 				print("Do you want to create it? [Y/n] ");
-				$answer = TµTerm::input();
+				$answer = TrTerm::input();
 				print("\n");
 				if ($answer && strcasecmp($answer, 'y') && strcasecmp($answer, 'yes'))
 					return;
@@ -165,7 +165,7 @@ class Trantor extends \Trantor\Web\Controller {
 		}
 		// no files given, copy the directory
 		if (is_null($files)) {
-			TµFile::recursiveCopy($fromDirPath, $toDirPath, $force, $sync);
+			TrFile::recursiveCopy($fromDirPath, $toDirPath, $force, $sync);
 			return;
 		}
 		// copy the chosen files
@@ -175,7 +175,7 @@ class Trantor extends \Trantor\Web\Controller {
 				continue;
 			$fromPath = $fromDirPath . DIRECTORY_SEPARATOR . $file;
 			$toPath = $toDirPath . DIRECTORY_SEPARATOR . $file;
-			TµFile::recursiveCopy($fromPath, $toPath, $force, $sync);
+			TrFile::recursiveCopy($fromPath, $toPath, $force, $sync);
 		}
 	}
 }
