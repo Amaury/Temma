@@ -1,10 +1,10 @@
-service temma_asynk
+service trantor_asynk
 {
 	type		= UNLISTED
 	user		= sysop
 	wait		= no
 	port		= 11137
-	server		= /path/to/project/bin/comma
+	server		= /path/to/project/bin/terminus
 	server_args	= nostderr AsynkInetd
 	protocol	= tcp
 	socket_type	= stream

@@ -4,8 +4,8 @@
 /**
  * Helper script to visualize the content of a JSON file.
  *
- * @author	Amaury Bouchard <amaury@iamaury.net>
- * @copyright	Copyright (c) 2007-2019, Amaury Bouchard
+ * @author	Amaury Bouchard <amaury@amaury.net>
+ * @copyright	Copyright (c) 2007-2023, Amaury Bouchard
  */
 
 // param check

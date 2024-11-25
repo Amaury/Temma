@@ -3,26 +3,26 @@
 /**
  * AsynkCron
  * @author	Amaury Bouchard <amaury@amaury.net>
- * @copyright	© 2023, Amaury Bouchard
- * @link	https://www.temma.net/en/documentation/asynk
+ * @copyright	© 2023-2024, Amaury Bouchard
+ * @link	https://www.trantor.org/en/documentation/asynk
  */
 
-use \Temma\Base\Log as TµLog;
+use \Trantor\Base\Log as TµLog;
 
 /**
  * Asynk worker executed by crontab or running as a daemon.
  *
  * This objet fetch waiting tasks, process them and remove them.
  */
-class AsynkWorker extends \Temma\Web\Controller {
+class AsynkWorker extends \Trantor\Web\Controller {
 	/** Constant: default delay between two loops (in seconds). */
 	const DEFAULT_LOOP_DELAY = 60;
 	/** Asynk DAO. */
-	private ?\Temma\Asynk\AsynkDao $_asynkDao = null;
+	private ?\Trantor\Asynk\AsynkDao $_asynkDao = null;
 
 	/** Init. */
 	public function __wakeup() {
-		$this->_asynkDao = $this->_loader['\Temma\Asynk\AsynkDao'];
+		$this->_asynkDao = $this->_loader['\Trantor\Asynk\AsynkDao'];
 	}
 	/**
 	 * Loop indefinitely (worker).
@@ -71,10 +71,10 @@ class AsynkWorker extends \Temma\Web\Controller {
 				// task deletion
 				$this->_asynkDao->removeFetchedTask($task);
 			} catch (\Exception $e) {
-				TµLog::log('Temma/Asynk', 'WARN', $e->getMessage());
+				TµLog::log('Trantor/Asynk', 'WARN', $e->getMessage());
 				$this->_asynkDao->invalidateFetchedTask($task);
 			} catch (\Error $er) {
-				TµLog::log('Temma/Asynk', 'WARN', $er->getMessage());
+				TµLog::log('Trantor/Asynk', 'WARN', $er->getMessage());
 				$this->_asynkDao->invalidateFetchedTask($task);
 			}
 		}

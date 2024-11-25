@@ -1,6 +1,6 @@
 <?php
 
-use \Temma\Utils\Dumper as TµDumper;
+use \Trantor\Utils\Dumper as TµDumper;
 
 /**
  * Smarty modifier used to dump data.
@@ -10,7 +10,7 @@ use \Temma\Utils\Dumper as TµDumper;
  * @return	string	The generated HTML stream.
  * @author	Amaury Bouchard <amaury@æmaury.net>
  * @copyright	© 2024, Amaury Bouchard
- * @link	https://www.temma.net/documentation/helper-smarty_dumper
+ * @link	https://www.trantor.org/documentation/helper-smarty_dumper
  */
 function smarty_modifier_dump(mixed $data, string $type='html', bool $container=true) {
 	global $smarty;

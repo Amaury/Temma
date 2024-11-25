@@ -4,12 +4,12 @@
  * User
  * @author	Amaury Bouchard <amaury@amaury.net>
  * @copyright	© 2023, Amaury Bouchard
- * @link	https://www.temma.net/en/documentation/helper-cli_user
+ * @link	https://www.trantor.org/en/documentation/helper-cli_user
  */
 
-use \Temma\Base\Log as TµLog;
-use \Temma\Utils\Ansi as TµAnsi;
-use \Temma\Utils\Term as TµTerm;
+use \Trantor\Base\Log as TrLog;
+use \Trantor\Utils\Ansi as TrAnsi;
+use \Trantor\Utils\Term as TrTerm;
 
 /**
  * User management CLI controller.
@@ -18,12 +18,12 @@ use \Temma\Utils\Term as TµTerm;
  * The users are managed in a way compatible with the Auth controller/plugin
  * and the Auth attribute.
  *
- * @see	\Temma\Controllers\Auth
- * @see	\Temma\Attributes\Auth
+ * @see	\Trantor\Controllers\Auth
+ * @see	\Trantor\Attributes\Auth
  */
-class User extends \Temma\Web\Controller {
+class User extends \Trantor\Web\Controller {
 	/** User DAO. */
-	private ?\Temma\Dao\Dao $_userDao = null;
+	private ?\Trantor\Dao\Dao $_userDao = null;
 
 	/** Init. */
 	public function __wakeup() {

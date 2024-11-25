@@ -4,15 +4,15 @@
  * Cache
  * @author	Amaury Bouchard <amaury@amaury.net>
  * @copyright	© 2023, Amaury Bouchard
- * @link	https://www.temma.net/en/documentation/helper-cli_cache
+ * @link	https://www.trantor.org/en/documentation/helper-cli_cache
  */
 
-use \Temma\Utils\Ansi as TµAnsi;
+use \Trantor\Utils\Ansi as TµAnsi;
 
 /**
  * Cache management CLI controller.
  */
-class Cache extends \Temma\Web\Controller {
+class Cache extends \Trantor\Web\Controller {
 	/**
 	 * Clear the cache.
 	 * @param	string	$datasource	Name of the data source to purge. (defaults to "cache")

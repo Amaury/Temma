@@ -5,7 +5,7 @@
  *
  * @author	Amaury Bouchard <amaury@amaury.net>
  * @copyright	© 2024, Amaury Bouchard
- * @link	https://www.temma.net/en/documentation/configuration
+ * @link	https://www.trantor.org/en/documentation/configuration
  */
 return [
 	'application' => [
@@ -16,21 +16,21 @@ return [
 			'cache' => 'memcache://192.168.0.1:11211;192.168.0.2:11211',
 		],
 		'enableSessions'    => true,
-		'sessionName'       => 'TemmaSession',
+		'sessionName'       => 'TrantorSession',
 		'sessionSource'     => 'ndb',
 		'cookieDomain'      => 'admin.mydomain.com',
 		'defaultNamespace'  => '\MyApp\Controllers',
 		'rootController'    => 'Homepage',
 		'defaultController' => 'NotFound',
 		'proxyController'   => 'Main',
-		'defaultView'       => '\Temma\Views\SmartyView',
+		'defaultView'       => '\Trantor\Views\SmartyView',
 		'loader'            => 'MyLoader',
-		'logFile'           => 'log/temma.log',
+		'logFile'           => 'log/trantor.log',
 		'logManager'        => [ 'ElasticLogManager', 'SentryLogManager' ]
 	],
 	'loglevels' => [
-		'Temma/Base' => 'ERROR',
-		'Temma/Web'  => 'WARN',
+		'Trantor/Base' => 'ERROR',
+		'Trantor/Web'  => 'WARN',
 		'myapp'      => 'DEBUG',
 		'default'    => 'NOTE',
 	],

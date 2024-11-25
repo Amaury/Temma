@@ -8,11 +8,11 @@
  * @return	string	The processed text.
  * @author	Amaury Bouchard <amaury@æmaury.net>
  * @copyright	© 2017, Amaury Bouchard
- * @link	https://www.temma.net/en/documentation/helper-smarty_filenamize
+ * @link	https://www.trantor.org/en/documentation/helper-smarty_filenamize
  */
 function smarty_modifier_filenamize(string $text, bool $hyphenSpaces=true, bool $lowercase=true) : string {
-	if (!class_exists('\Temma\Utils\Text'))
-		require_once('Temma/Utils/Text.php');
-	$url = \Temma\Utils\Text::filenamize($text, $hyphenSpaces, $lowercase);
+	if (!class_exists('\Trantor\Utils\Text'))
+		require_once('Trantor/Utils/Text.php');
+	$url = \Trantor\Utils\Text::filenamize($text, $hyphenSpaces, $lowercase);
 	return ($url);
 }

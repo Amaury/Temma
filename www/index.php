@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Temma framework bootstrap script.
+ * Trantor framework bootstrap script.
  *
  * @author	Amaury Bouchard <amaury@amaury.net>
- * @copyright	© 2007-2023, Amaury Bouchard
- * @package	Temma
+ * @copyright	© 2007-2024, Amaury Bouchard
+ * @package	Trantor
  */
 
 // check server variables
@@ -14,40 +14,40 @@ if (!isset($_SERVER['SCRIPT_FILENAME']) && isset($_SERVER['ORIG_SCRIPT_FILENAME'
 // include path configuration
 set_include_path(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'lib' . PATH_SEPARATOR . get_include_path());
 
-// Temma autoloader init
-require_once('Temma/Base/Autoload.php');
-\Temma\Base\Autoload::autoload();
+// Trantor autoloader init
+require_once('Trantor/Base/Autoload.php');
+\Trantor\Base\Autoload::autoload();
 
 // Composer autoloader
 @include_once(__DIR__ . '/../vendor/autoload.php');
 
-use \Temma\Base\Log as TµLog;
+use \Trantor\Base\Log as TµLog;
 
 // framework startup
 try {
-	$temma = new \Temma\Web\Framework();
-	$temma->process();
+	$trantor = new \Trantor\Web\Framework();
+	$trantor->process();
 } catch (\Throwable $e) {
 	// error management
-	TµLog::log('Temma/Web', 'CRIT', "Critical error [" . $e->getFile() . ':' . $e->getLine() . "]: '" . $e->getMessage() . "'.");
+	TµLog::log('Trantor/Web', 'CRIT', "Critical error [" . $e->getFile() . ':' . $e->getLine() . "]: '" . $e->getMessage() . "'.");
 	$errorCode = 500;
 	$errorPage = '';
-	if (is_a($e, '\Temma\Exceptions\Http')) {
+	if (is_a($e, '\Trantor\Exceptions\Http')) {
 		$errorCode = $e->getCode();
-	} else if (is_a($e, '\Temma\Exceptions\Application')) {
+	} else if (is_a($e, '\Trantor\Exceptions\Application')) {
 		$code = $e->getCode();
-		if ($code == \Temma\Exceptions\Application::AUTHENTICATION)
+		if ($code == \Trantor\Exceptions\Application::AUTHENTICATION)
 			$errorCode = 401;
-		else if ($code == \Temma\Exceptions\Application::UNAUTHORIZED)
+		else if ($code == \Trantor\Exceptions\Application::UNAUTHORIZED)
 			$errorCode = 403;
-		else if ($code == \Temma\Exceptions\Application::RETRY)
+		else if ($code == \Trantor\Exceptions\Application::RETRY)
 			$errorCode = 449;
 		else
 			$errorCode = 400;
 	} else
-		TµLog::log('Temma/Web', 'CRIT', $e->getTrace());
-	if (isset($temma))
-		$errorPage = $temma->getErrorPage($errorCode);
+		TµLog::log('Trantor/Web', 'CRIT', $e->getTrace());
+	if (isset($trantor))
+		$errorPage = $trantor->getErrorPage($errorCode);
 	$errorString = errorCodeToErrorString($errorCode);
 	header("Status: $errorCode $errorString");
 	header(($_SERVER['SERVER_PROTOCOL'] ?? 'HTTP/1.1') . " $errorCode $errorString", true, $errorCode);

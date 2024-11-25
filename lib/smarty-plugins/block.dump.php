@@ -1,6 +1,6 @@
 <?php
 
-use \Temma\Utils\Dumper as TµDumper;
+use \Trantor\Utils\Dumper as TµDumper;
 
 /**
  * Smarty block tag used to dump data.
@@ -11,7 +11,7 @@ use \Temma\Utils\Dumper as TµDumper;
  * @return	?string	The HTML dump.
  * @author	Amaury Bouchard <amaury@æmaury.net>
  * @copyright	© 2024, Amaury Bouchard
- * @link	https://www.temma.net/en/documentation/helper-smarty_dumper
+ * @link	https://www.trantor.org/en/documentation/helper-smarty_dumper
  * @link	https://smarty-php.github.io/smarty/stable/api/extending/block-tags/
  */
 function smarty_block_dump($params, $content, $template, &$repeat) {
